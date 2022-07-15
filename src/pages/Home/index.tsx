@@ -30,7 +30,7 @@ type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 // Este type serve para inferir todas as propriedades (task, minutesAmount) que existem na const newCycleFormValidationSchema
 
 export function Home() {
-  const { register, handleSubmit, watch } = useForm<NewCycleFormData>({
+  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       task: '',
@@ -40,6 +40,7 @@ export function Home() {
 
   function handleCreateNewCycle(data: NewCycleFormData) {
     console.log(data)
+    reset() // para voltar os campos do formulario ao modo "defaultValues", assim que o submit for feito.
   }
 
   const task = watch('task')
