@@ -1,32 +1,11 @@
 import { FormContainer, MinutesAmountInput, TaskInput } from './styles'
-import * as zod from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-
-const newCycleFormValidationSchema = zod.object({
-  task: zod.string().min(1, 'Informe a tarefa'),
-  minutesAmount: zod
-    .number()
-    .min(1, 'O ciclo precisa ser de no mínimo 5 minutos.')
-    .max(60, 'O ciclo precisa ser de no máximo 60 minutos.'),
-})
-
-// interface NewCycleFormData {
-//   task: string;
-//   minutesAmount: number;
-// }
-
-type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
-// Este type serve para inferir todas as propriedades (task, minutesAmount) que existem na const newCycleFormValidationSchema
+import { useContext } from 'react'
+import { CyclesContext } from '../..'
+import { useFormContext } from 'react-hook-form'
 
 export function NewCycleForm() {
-  const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
-    resolver: zodResolver(newCycleFormValidationSchema),
-    defaultValues: {
-      task: '',
-      minutesAmount: 0,
-    },
-  })
+  const { activeCycle } = useContext(CyclesContext)
+  const { register } = useFormContext() // useeForm context so funciona se houver um Provider por volta do componente que esta passando as propriedades. Nesse caso eh o <FormProvider> na Home.
 
   return (
     <FormContainer>
