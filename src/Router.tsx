@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { DefaultLayout } from './layouts/DefaultLayout'
 import { History } from './pages/History'
+import { ContextApi } from './pages/ContextApi'
 import { Home } from './pages/Home'
 
 export function Router() {
@@ -10,6 +11,7 @@ export function Router() {
         {/* Rotas encadeadas. No caso acima, todas as rotas que comecam com / receberao as caracteristicas do componente <DefaultLayout /> */}
         <Route path="/" element={<Home />} />
         <Route path="/history" element={<History />} />
+        <Route path="/context" element={<ContextApi />} />
       </Route>
     </Routes>
   )
