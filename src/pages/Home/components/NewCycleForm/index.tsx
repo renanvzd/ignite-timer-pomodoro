@@ -1,11 +1,11 @@
 import { FormContainer, MinutesAmountInput, TaskInput } from './styles'
 import { useContext } from 'react'
-import { CyclesContext } from '../..'
 import { useFormContext } from 'react-hook-form'
+import { CyclesContext } from '../../../../contexts/CyclesContext'
 
 export function NewCycleForm() {
   const { activeCycle } = useContext(CyclesContext)
-  const { register } = useFormContext() // useeForm context so funciona se houver um Provider por volta do componente que esta passando as propriedades. Nesse caso eh o <FormProvider> na Home.
+  const { register } = useFormContext()
 
   return (
     <FormContainer>
